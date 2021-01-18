@@ -802,7 +802,7 @@ void StartKEYTask(void const * argument)
   for(;;)
   {
     if(HAL_GPIO_ReadPin(KEY0_GPIO_Port, KEY0_Pin) == GPIO_PIN_RESET)
-    	{led_mode = 0;	HAL_I2C_Mem_Write(&hi2c1, I2C_DEV_ADDR_24C02, 0, z, s, s, s);}
+    	{led_mode = 0;	}
     if(HAL_GPIO_ReadPin(KEY1_GPIO_Port, KEY1_Pin) == GPIO_PIN_RESET)
        	{led_mode = 1;}
     if(HAL_GPIO_ReadPin(KEY2_GPIO_Port, KEY2_Pin) == GPIO_PIN_RESET)
