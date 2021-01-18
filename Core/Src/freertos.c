@@ -23,10 +23,11 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
+#include "usart.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+uint8_t led_mode=0;
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -149,10 +150,10 @@ void StartLEDTask(void const * argument)
 			led_pin = LED0_Pin;
 			break;
 		case 1:
-			led_pin = LED1_Pin;
+			led_pin = LED0_Pin | LED1_Pin;
 			break;
 		case 2:
-			led_pin = LED0_Pin | LED1_Pin;
+			led_pin = LED1_Pin;
 		default:
 			break;
 	}
@@ -174,12 +175,15 @@ void StartLEDTask(void const * argument)
 void StartKEYTask(void const * argument)
 {
   /* USER CODE BEGIN StartKEYTask */
+	uint8_t x;
+		x = '1';
   /* Infinite loop */
   for(;;)
   {
     if(HAL_GPIO_ReadPin(KEY0_GPIO_Port, KEY0_Pin) == GPIO_PIN_RESET)
     {
     	led_mode = 0;
+    	HAL_UART_Transmit_IT(&huart1, &x, 1);
     }
     if(HAL_GPIO_ReadPin(KEY1_GPIO_Port, KEY1_Pin) == GPIO_PIN_RESET)
 	{

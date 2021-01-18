@@ -27,6 +27,9 @@
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart3;
 
+void Uart1_Tx_CallBack(UART_HandleTypeDef *huart1);
+void Uart1_Rx_CallBack(UART_HandleTypeDef *huart1);
+
 /* USART1 init function */
 
 void MX_USART1_UART_Init(void)
@@ -40,6 +43,8 @@ void MX_USART1_UART_Init(void)
   huart1.Init.Mode = UART_MODE_TX_RX;
   huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
   huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  (&huart1)->RxCpltCallback = Uart1_Rx_CallBack;
+  (&huart1)->TxCpltCallback = Uart1_Tx_CallBack;
   if (HAL_UART_Init(&huart1) != HAL_OK)
   {
     Error_Handler();
@@ -167,6 +172,16 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
+
+void Uart1_Tx_CallBack(UART_HandleTypeDef *huart1)
+{
+
+}
+
+void Uart1_Rx_CallBack(UART_HandleTypeDef *huart1)
+{
+
+}
 
 /* USER CODE END 1 */
 
