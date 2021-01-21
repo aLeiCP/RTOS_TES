@@ -51,7 +51,11 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-
+List_t list;
+ListItem_t item1;
+ListItem_t item2;
+ListItem_t item3;
+ListItem_t item4;
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -107,7 +111,19 @@ int main(void)
   MX_USB_OTG_FS_PCD_Init();
   MX_I2S2_Init();
   /* USER CODE BEGIN 2 */
-
+  vListInitialise(&list);
+  vListInitialiseItem(&item1);
+  vListInitialiseItem(&item2);
+  vListInitialiseItem(&item3);
+  vListInitialiseItem(&item4);
+  item1.xItemValue = 0x00000001;
+  item2.xItemValue = 0x00000010;
+  item3.xItemValue = 0x00000100;
+  item4.xItemValue = 0x00001000;
+  vListInsert(&list, &item1);
+  vListInsert(&list, &item2);
+  vListInsert(&list, &item3);
+  vListInsert(&list, &item4);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
